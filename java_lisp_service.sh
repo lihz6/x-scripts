@@ -69,6 +69,9 @@ servefor() {
 
   if systemctl start $ser_name; then
     systemctl --no-pager status $ser_name
+    if ! systemctl is-enabled $ser_name &>/dev/null; then
+      systemctl enable $ser_name
+    fi
   fi
   
 }
