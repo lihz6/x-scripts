@@ -9,26 +9,26 @@ EOF
 
 
 if [ -z "$BASH" ]; then
-  echo 'Please use `bash` instead of `sh`'.
+  echo 'Oops, expect `bash`.'.
   exit 1
 fi
 
 
 if [[ $EUID -ne 0 ]]; then
-  echo 'Please run as `root`'.
+  echo 'Oops, expect `root` user or `sudo`.'.
   exit 1
 fi
 
 
 if [[ -z $JAVA_HOME ]]; then
-  echo '`$JAVA_HOME` not set.'
+  echo 'Oops, expect `$JAVA_HOME`.'
   printf '\n  Try `sudo -E` to preserve environment.\n\n'
   exit 1
 fi
 
 
 if ! $JAVA_HOME/bin/java -version &>/dev/null; then
-  $JAVA_HOME/bin/java -version
+  echo 'Oops, expect `$JAVA_HOME/bin/java`.'
   exit 1
 fi
 
