@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-printf '\n\n\n\n\n\n'
+python <<EOF
+from __future__ import print_function
+for l, i in enumerate(range(0, ${COLUMNS:-80} // 2, ${COLUMNS:-80} % 2 + 2)):
+  if l % 2:
+    print(' ' * i, end='')
+  print('*' * (${COLUMNS:-80} - i))
+EOF
+
 
 if [ -z "$BASH" ]; then
   echo 'Please use `bash` instead of `sh`'.
