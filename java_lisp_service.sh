@@ -21,9 +21,13 @@ fi
 
 
 if [[ -z $JAVA_HOME ]]; then
-  echo 'Oops, expect `$JAVA_HOME`.'
-  printf '\n  Try `sudo -E` to preserve environment.\n\n'
-  exit 1
+  if which java &>/dev/null; then
+    JAVA_HOME=$(dirname $(dirname $(realpath $(which java))))
+  else
+    echo 'Oops, expect `$JAVA_HOME`.'
+    printf '\n  Try `sudo -E` to preserve environment.\n\n'
+    exit 1
+  fi
 fi
 
 
